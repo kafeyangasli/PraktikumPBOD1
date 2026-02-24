@@ -3,11 +3,6 @@
  * Pembuat       : Maulana Ghazzam Adil Al Faiq - 24060124130083
  * Tanggal       : 20 Februari 2026
  */
-/* Nama File     : Titik.java
- * Deskripsi     : berisi atribut dan method dalam class Titik
- * Pembuat       :
- * Tanggal       :
- */
 
 public class Titik {
 
