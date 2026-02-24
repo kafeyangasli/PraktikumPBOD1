@@ -1,7 +1,7 @@
 /* Nama File     : Titik.java
  * Deskripsi     : class titik gokil
  * Pembuat       : Maulana Ghazzam Adil Al Faiq - 24060124130083
- * Tanggal       : 20 Februari 2026
+ * Tanggal       : 24 Februari 2026
  */
 
 public class Titik {
@@ -9,13 +9,22 @@ public class Titik {
     /***************ATRIBUT*****************/
     double absis;
     double ordinat;
+    static int counterTitik = 0;
 
     /***************METHOD******************/
     // Konstruktor untuk membuat titik (0,0)
     Titik(){
         absis = 0;
         ordinat = 0;
+        counterTitik++;
     }
+
+    // Konstruktor overloading untuk membuat titik (x,y)
+    Titik(double x, double y) {
+        absis = x;
+        ordinat = y;
+        counterTitik++;
+    } 
 
     // Mengembalikan nilai absis
     double getAbsis(){
@@ -25,6 +34,11 @@ public class Titik {
     // Mengembalikan nilai ordinat
     double getOrdinat(){
         return ordinat;
+    }
+
+    // Mengembalikan banyaknya titik yang telah terbuat
+    static int getCounterTitik(){
+        return counterTitik;
     }
 
     // Mengatur absis titik dengan nilai baru x
