@@ -6,7 +6,7 @@
 
 import java.time.LocalDate;
 
-public class PNS extends Manusia {
+public class PNS extends Manusia implements IPajak {
    /* -- Atribut -- */
    private String NIP;
    private static int counterPNS = 0; 

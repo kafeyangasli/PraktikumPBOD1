@@ -6,7 +6,7 @@
 
 import java.time.LocalDate;
 
-public class Petani extends Manusia {
+public class Petani extends Manusia implements IPajak {
    /* -- Atribut -- */
    private String asal_kota;
    private static int counterPetani = 0; 

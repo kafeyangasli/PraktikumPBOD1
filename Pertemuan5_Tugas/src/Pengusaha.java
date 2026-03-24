@@ -6,7 +6,7 @@
 
 import java.time.LocalDate;
 
-public class Pengusaha extends Manusia {
+public class Pengusaha extends Manusia implements IPajak {
    /* -- Atribut -- */
    private String NPWP;
    private static int counterPengusaha = 0; 
