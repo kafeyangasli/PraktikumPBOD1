@@ -1,3 +1,10 @@
+/*
+    File        : Data.java
+    Deskripsi   : Polimorfisme Universal tipe Generik (Operator)
+    Nama/NIM    : Maulana Ghazzam Adil Al Faiq / 24060124130083
+    Tanggal     : 29 April 2026
+*/
+
 public class Data<G> {
     /* Atribut */
     private G[] ruang = (G[]) new Object[100];

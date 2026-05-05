@@ -79,6 +79,14 @@ public class OperatorGenerik {
         System.out.printf("Kembangtelon Kutus bobotnya adalah %d kg\n", k2.getIsi().getBobot());
 
         System.out.printf("Total berat: %d\n", og.bobot2(k1, k2));
+
+        // System.out.printf("Total berat: %d\n", og.bobot2(a1, a2)); 
+        /*
+            Kode di atas akan gagal karena a1 dan a2 merupakan Datum tipe Anabul. Meski
+            Kucing merupakan subclass dari Anabul, fungsi bobot2 memiliki bound upper
+            Kucing, dimana hanya Kucing dan subclassesnya yang hanya diperbolehkan
+            sebagai masukan parameter fungsi.
+        */ 
         
     }
 }
