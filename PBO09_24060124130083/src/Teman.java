@@ -153,7 +153,7 @@ public class Teman {
         T.addNama("Mahes");
         T.gantiNama("Mahess", "Mahes");
         key = "Mahes";
-        System.out.printf("Ada %d teman yang bernama %s.\n", T.countNama(key), key);
+        System.out.printf("Ada %d teman ya ng bernama %s.\n", T.countNama(key), key);
         T.showTeman();
         System.out.printf("Ada %d teman.\n", T.getNbElm());
     }
