@@ -30,79 +30,77 @@ public class Piaraan {
         return this.NbElm;
     }
 
-    public String getNama(int idx) {
-        if (idx < this.NbElm) {
-            return this.Lnama.get(idx);
-        } else {
-            return "-";
+    public void enqueueAnabul(Anabul anabul) {
+        if (this.NbElm < max) {
+            this.Lanabul[NbElm] = anabul;
+            NbElm++;
         }
     }
 
-    // Setter
-    public void setNama(int idx, String teman) {
-        if (idx < this.NbElm) {
-            this.Lnama.set(idx, teman);
-        }
+    // Mengembalikan elemen terdepan dari Antrian
+    public Anabul getAnabul() {
+        return this.Lanabul[0];
     }
 
-    public void addNama(String teman) {
-        this.Lnama.add(teman);
-        this.NbElm++;
-    }
-
-    public void delNama(String teman) {
+    // Mengembalikan dan menghapus elemen terdepan dari Antrian
+    public Anabul dequeueAnabul() {
         /* Kamus Lokal */
-        int idx;
-
+        Anabul exit;
+        
         /* Algoritma */
-        idx = this.Lnama.indexOf(teman);
-        if (idx != -1) {
-            this.Lnama.remove(idx);
+        exit = null; // Inisialiasi awal
+        if (this.NbElm != 0) {
+            exit = this.Lanabul[0];
+            for (int i = 0; i < (this.NbElm) - 1; i++) {
+                this.Lanabul[i] = this.Lanabul[i + 1];
+            }
             this.NbElm--;
+            this.Lanabul[this.NbElm] = null;
         }
+
+        return exit;
     }
 
-    // Predikat
-    public boolean isMember(String nama) {
-        return this.Lnama.indexOf(nama) != -1;
-    }
-
-    // Ganti Nama
-    public void gantiNama(String nama, String baru) {
+    // Count Anabul yang merupakan Kucing
+    public int countKucing() {
         /* Kamus Lokal */
-        int idx;
+        int count;
 
         /* Algoritma */
-        idx = this.Lnama.indexOf(nama);
-        if (idx != -1) {
-            this.Lnama.set(idx, baru);
-        } else {
-            System.out.println("Tidak ada teman " + nama);
-        }
-    }
+        count = 0;
 
-    // Count Nama
-    public int countNama(String nama) {
-        /* Kamus Lokal */
-        int i;
-
-        /* Algoritma */
-        i = 0;
-
-        for (String teman : this.Lnama) {
-            if (teman == nama) {
-                i++;
+        for (int i = 0; i < this.NbElm; i++) {
+            if (this.Lanabul[i] instanceof Kucing) {
+                count++;
             }
         }
 
-        return i;
+        return count;
+    }
+
+    // Count Bobot Anabul yang merupakan Kucing
+    public int bobotKucing() {
+        /* Kamus Lokal */
+        int BT;
+
+        /* Algoritma */
+        BT = 0;
+
+        for (int i = 0; i < this.NbElm; i++) {
+            if (this.Lanabul[i] instanceof Kucing) {
+                BT += ((Kucing)this.Lanabul[i]).getBobot();
+            }
+        }
+
+        return BT;
     }
 
     // Printer
-    public void showTeman() {
+    public void showJenisAnabul() {
         System.out.printf("[ ");
-        for (String teman : this.Lnama) {
-            System.out.printf("%s ", teman);
+        for (int i = 0; i < this.NbElm; i++) {
+            Anabul placeholder = this.Lanabul[i];
+            System.out.printf("%s (%s) ", placeholder.getNama(), placeholder.getClass().getSimpleName());
         }
         System.out.printf("]\n");
     }
@@ -110,47 +108,38 @@ public class Piaraan {
     // Method Main
     public static void main(String args[]) {
         /* Kamus */
-        Teman T;
-        String key;
+        Piaraan P;
+        Anabul dequeued;
 
         /* Algoritma */
-        T = new Teman();
-        T.showTeman();
+        P = new Piaraan();
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.addNama("Ikrar");
-        System.out.println("Elemen pertama: " + T.getNama(0));
-        T.showTeman();
+        P.enqueueAnabul(new Kucing("Garfield", 67));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.setNama(0, "Mahes");
-        System.out.println("Elemen pertama: " + T.getNama(0));
-        T.showTeman();
+        P.enqueueAnabul(new Anjing("Hachi"));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.addNama("Jordan");
-        T.addNama("Haydar");
-        System.out.println("Ditambahkan teman Jordan dan Haydar");
-        T.showTeman();
+        P.enqueueAnabul(new Anggora("Andorra", 34));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.addNama("teddy");
-        T.addNama("wobarpo");
-        System.out.println("Ditambahkan teman teddy dan wobarpo");
-        T.showTeman();
-        T.delNama("teddy");
-        System.out.println("Dihapus teman teddy.");
-        T.showTeman();
-        // wobarpo geser ke kiri
-        T.delNama("wobarpo");
-        System.out.println("Dihapus teman wobarpo.");
-        T.showTeman();
+        P.enqueueAnabul(new Burung("AngryBirds"));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.gantiNama("Mahes", "Mahess");
-        System.out.println("Mahes berganti jadi Mahess.");
-        T.showTeman();
+        P.enqueueAnabul(new Kembangtelon("Kutus", 23));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
 
-        T.gantiNama("Hydar", "Haydar");
-        T.addNama("Mahes");
-        T.gantiNama("Mahess", "Mahes");
-        key = "Mahes";
-        System.out.printf("Ada %d teman yang bernama %s.\n", T.countNama(key), key);
-        T.showTeman();
+        P.enqueueAnabul(new Anjing("Blacky"));
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
+
+        P.showJenisAnabul();
+        System.out.println("Ada " + P.countKucing() + " kucing dengan total bobot " + P.bobotKucing() + " kg");
+        
+        dequeued = P.dequeueAnabul();
+        P.showJenisAnabul();
+        System.out.println("Diambil " + dequeued.getClass().getSimpleName() + " " + dequeued.getNama() + " dari koleksi.");
+        System.out.println("Anabul pada depan antrian saat ini adalah " + P.getAnabul().getNama());
+        System.out.printf("Ada %d Anabul dalam antrian.\n", P.getNbElm());
     }
 }

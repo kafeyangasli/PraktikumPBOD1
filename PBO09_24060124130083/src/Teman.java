@@ -111,35 +111,43 @@ public class Teman {
         /* Algoritma */
         T = new Teman();
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.addNama("Ikrar");
         System.out.println("Elemen pertama: " + T.getNama(0));
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.setNama(0, "Mahes");
         System.out.println("Elemen pertama: " + T.getNama(0));
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.addNama("Jordan");
         T.addNama("Haydar");
         System.out.println("Ditambahkan teman Jordan dan Haydar");
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.addNama("teddy");
         T.addNama("wobarpo");
         System.out.println("Ditambahkan teman teddy dan wobarpo");
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
         T.delNama("teddy");
         System.out.println("Dihapus teman teddy.");
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
         // wobarpo geser ke kiri
         T.delNama("wobarpo");
         System.out.println("Dihapus teman wobarpo.");
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.gantiNama("Mahes", "Mahess");
         System.out.println("Mahes berganti jadi Mahess.");
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
 
         T.gantiNama("Hydar", "Haydar");
         T.addNama("Mahes");
@@ -147,5 +155,6 @@ public class Teman {
         key = "Mahes";
         System.out.printf("Ada %d teman yang bernama %s.\n", T.countNama(key), key);
         T.showTeman();
+        System.out.printf("Ada %d teman.\n", T.getNbElm());
     }
 }
