@@ -51,11 +51,19 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jLabelDataSize" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelListSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSetSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelMapSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jButtonAddData" max="32767" attributes="0"/>
-                          <Component id="jButtonSaveData" max="32767" attributes="0"/>
+                          <Component id="jButtonAddList" max="32767" attributes="0"/>
+                          <Component id="jButtonSaveList" max="32767" attributes="0"/>
+                          <Component id="jButtonAddSet" max="32767" attributes="0"/>
+                          <Component id="jButtonSaveSet" max="32767" attributes="0"/>
+                          <Component id="jButtonSaveMap" max="32767" attributes="0"/>
+                          <Component id="jButtonAddMap" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -69,11 +77,25 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jButtonAddData" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAddList" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonSaveData" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDataSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonSaveList" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelListSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonAddSet" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonSaveSet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSetSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonAddMap" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButtonSaveMap" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelMapSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -92,7 +114,7 @@
                               <Component id="jButtonDelete" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
@@ -169,29 +191,77 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonjButtonUpdateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonAddData">
+    <Component class="javax.swing.JButton" name="jButtonAddList">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Insert Data"/>
+        <Property name="text" type="java.lang.String" value="Insert List"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddDataActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddListActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonSaveData">
+    <Component class="javax.swing.JButton" name="jButtonSaveList">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Save Data"/>
+        <Property name="text" type="java.lang.String" value="Save List"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveDataActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveListActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelDataSize">
+    <Component class="javax.swing.JLabel" name="jLabelListSize">
       <Properties>
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="jButtonSaveData"/>
+          <ComponentRef name="jButtonSaveList"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Size: 5 --&gt;"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAddSet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insert Set"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddSetActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelSetSize">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="jButtonSaveList"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Size: 5 --&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSaveSet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save Set"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveSetActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSaveMap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save Map"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveMapActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelMapSize">
+      <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="jButtonSaveList"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Size: 5 --&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAddMap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insert Map"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddMapActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -195,7 +195,7 @@ public class gui_C extends javax.swing.JFrame {
 
     private void jButtonAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDataActionPerformed
         // TODO add your handling code here:
-        for (String add : toAdd) {
+        for (String add : itemData) {
             addItem(add);
         }
     }//GEN-LAST:event_jButtonAddDataActionPerformed

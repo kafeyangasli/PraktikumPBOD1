@@ -1,7 +1,13 @@
 
 import javax.swing.DefaultListModel;
+import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+import javax.swing.JLabel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,7 +29,10 @@ public class gui_D extends javax.swing.JFrame {
             "tas",
             "pintu"
     };
-    private List<String> itemData = new ArrayList<>();
+    final private List<String> listData = new ArrayList<>();
+    final private Set<String> setData = new HashSet<>();
+    final private Map<String, String> mapData = new HashMap<>(); 
+    
 
     /**
      * Creates new form gui
@@ -32,6 +41,9 @@ public class gui_D extends javax.swing.JFrame {
         initComponents();
         this.listDLM = new DefaultListModel<>();
         this.jListItem.setModel(listDLM);
+        updateSizeLabel("list");
+        updateSizeLabel("set");
+        updateSizeLabel("map");
     }
 
     /**
@@ -45,8 +57,33 @@ public class gui_D extends javax.swing.JFrame {
         listDLM.addElement(namaItem);
     }
     
-    private void updateSizeLabel() {
-        jLabelDataSize.setText("Size: %d -->".formatted(itemData.size()));
+    private void updateSizeLabel(String type) {
+        JLabel toChange;
+        Collection size;
+        toChange = switch (type) {
+            case "list" -> jLabelListSize;
+            case "set" -> jLabelSetSize;
+            case "map" -> jLabelMapSize;
+            default -> null;
+        };
+        size = switch (type) {
+            case "list" -> listData;
+            case "set" -> setData;
+            case "map" -> null;
+            default -> null;
+        };
+        
+        if (toChange == null) {
+            return; // invalid masukan
+        }
+        
+        if (size == null) { // map
+            toChange.setText("Size: %d -->".formatted(mapData.size()));
+            return;
+        }
+        
+        // ekslkusif koleksi
+        toChange.setText("Size: %d -->".formatted(size.size()));
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,9 +96,15 @@ public class gui_D extends javax.swing.JFrame {
         jButtonDelete = new javax.swing.JButton();
         jButtonClearAll = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
-        jButtonAddData = new javax.swing.JButton();
-        jButtonSaveData = new javax.swing.JButton();
-        jLabelDataSize = new javax.swing.JLabel();
+        jButtonAddList = new javax.swing.JButton();
+        jButtonSaveList = new javax.swing.JButton();
+        jLabelListSize = new javax.swing.JLabel();
+        jButtonAddSet = new javax.swing.JButton();
+        jLabelSetSize = new javax.swing.JLabel();
+        jButtonSaveSet = new javax.swing.JButton();
+        jButtonSaveMap = new javax.swing.JButton();
+        jLabelMapSize = new javax.swing.JLabel();
+        jButtonAddMap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Item GUI - Praktikum PBO D1");
@@ -90,14 +133,32 @@ public class gui_D extends javax.swing.JFrame {
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(this::jButtonjButtonUpdateActionPerformed);
 
-        jButtonAddData.setText("Insert Data");
-        jButtonAddData.addActionListener(this::jButtonAddDataActionPerformed);
+        jButtonAddList.setText("Insert List");
+        jButtonAddList.addActionListener(this::jButtonAddListActionPerformed);
 
-        jButtonSaveData.setText("Save Data");
-        jButtonSaveData.addActionListener(this::jButtonSaveDataActionPerformed);
+        jButtonSaveList.setText("Save List");
+        jButtonSaveList.addActionListener(this::jButtonSaveListActionPerformed);
 
-        jLabelDataSize.setLabelFor(jButtonSaveData);
-        jLabelDataSize.setText("Size: 5 -->");
+        jLabelListSize.setLabelFor(jButtonSaveList);
+        jLabelListSize.setText("Size: 5 -->");
+
+        jButtonAddSet.setText("Insert Set");
+        jButtonAddSet.addActionListener(this::jButtonAddSetActionPerformed);
+
+        jLabelSetSize.setLabelFor(jButtonSaveList);
+        jLabelSetSize.setText("Size: 5 -->");
+
+        jButtonSaveSet.setText("Save Set");
+        jButtonSaveSet.addActionListener(this::jButtonSaveSetActionPerformed);
+
+        jButtonSaveMap.setText("Save Map");
+        jButtonSaveMap.addActionListener(this::jButtonSaveMapActionPerformed);
+
+        jLabelMapSize.setLabelFor(jButtonSaveList);
+        jLabelMapSize.setText("Size: 5 -->");
+
+        jButtonAddMap.setText("Insert Map");
+        jButtonAddMap.addActionListener(this::jButtonAddMapActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,11 +183,18 @@ public class gui_D extends javax.swing.JFrame {
                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabelDataSize)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelListSize, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelSetSize, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelMapSize, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonAddData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSaveData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButtonAddList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSaveList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAddSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSaveSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSaveMap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAddMap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -135,11 +203,23 @@ public class gui_D extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAddData)
+                        .addComponent(jButtonAddList)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSaveData)
-                            .addComponent(jLabelDataSize))
+                            .addComponent(jButtonSaveList)
+                            .addComponent(jLabelListSize))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAddSet)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSaveSet)
+                            .addComponent(jLabelSetSize))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAddMap)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSaveMap)
+                            .addComponent(jLabelMapSize))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -154,7 +234,7 @@ public class gui_D extends javax.swing.JFrame {
                                 .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 60, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -193,27 +273,71 @@ public class gui_D extends javax.swing.JFrame {
         listDLM.setElementAt(selected, index);
     }//GEN-LAST:event_jButtonjButtonUpdateActionPerformed
 
-    private void jButtonAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddDataActionPerformed
+    private void jButtonAddListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddListActionPerformed
         // TODO add your handling code here:
-        for (String add : toAdd) {
+        for (String add : listData) {
             addItem(add);
         }
-    }//GEN-LAST:event_jButtonAddDataActionPerformed
+    }//GEN-LAST:event_jButtonAddListActionPerformed
 
-    private void jButtonSaveDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveDataActionPerformed
+    private void jButtonSaveListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveListActionPerformed
         // TODO add your handling code here:
-        if (!itemData.isEmpty()) { // ada isinya
-            itemData.clear(); // hapus
+        if (!listData.isEmpty()) { // ada isinya
+            listData.clear(); // hapus
         }
         
         //timpa
         for (int i = 0; i < listDLM.getSize(); i++) {
-            itemData.add(listDLM.getElementAt(i));
+            listData.add(listDLM.getElementAt(i));
         }
         
         // update count
-        updateSizeLabel();
-    }//GEN-LAST:event_jButtonSaveDataActionPerformed
+        updateSizeLabel("list");
+    }//GEN-LAST:event_jButtonSaveListActionPerformed
+
+    private void jButtonAddSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddSetActionPerformed
+        // TODO add your handling code here:
+        for (String add : setData) {
+            addItem(add);
+        }
+    }//GEN-LAST:event_jButtonAddSetActionPerformed
+
+    private void jButtonSaveSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveSetActionPerformed
+        // TODO add your handling code here:
+        if (!setData.isEmpty()) { // ada isinya
+            setData.clear(); // hapus
+        }
+        
+        //timpa
+        for (int i = 0; i < listDLM.getSize(); i++) {
+            setData.add(listDLM.getElementAt(i));
+        }
+        
+        // update count
+        updateSizeLabel("set");
+    }//GEN-LAST:event_jButtonSaveSetActionPerformed
+
+    private void jButtonSaveMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveMapActionPerformed
+        // TODO add your handling code here:
+        if (!mapData.isEmpty()) {
+            mapData.clear();
+        }
+        
+        //timpa
+        for (int i = 0; i < listDLM.getSize(); i++) {
+            mapData.put(String.valueOf(i), listDLM.getElementAt(i));
+        }
+        
+        // update count
+        updateSizeLabel("map");
+    }//GEN-LAST:event_jButtonSaveMapActionPerformed
+
+    private void jButtonAddMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMapActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < mapData.size(); i++) {
+            addItem(mapData.get(String.valueOf(i)));
+        }
+    }//GEN-LAST:event_jButtonAddMapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,13 +366,19 @@ public class gui_D extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
-    private javax.swing.JButton jButtonAddData;
+    private javax.swing.JButton jButtonAddList;
+    private javax.swing.JButton jButtonAddMap;
+    private javax.swing.JButton jButtonAddSet;
     private javax.swing.JButton jButtonClearAll;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonSaveData;
+    private javax.swing.JButton jButtonSaveList;
+    private javax.swing.JButton jButtonSaveMap;
+    private javax.swing.JButton jButtonSaveSet;
     private javax.swing.JButton jButtonUpdate;
-    private javax.swing.JLabel jLabelDataSize;
+    private javax.swing.JLabel jLabelListSize;
+    private javax.swing.JLabel jLabelMapSize;
     private javax.swing.JLabel jLabelNama;
+    private javax.swing.JLabel jLabelSetSize;
     private javax.swing.JList<String> jListItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldNamaItem;
